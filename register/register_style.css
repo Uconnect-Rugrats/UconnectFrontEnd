@@ -46,6 +46,14 @@ body {
   margin-bottom: 25px;
 }
 
+.input-box p, .listaDesplegable p {
+  font-size: 12px;
+}
+
+.inputs .input-box {
+   margin-top: 10px;
+}
+
 .inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -56,6 +64,7 @@ body {
 }
 
 .box-2 {
+  font-size: 13px;
   outline: none;
   border-color: #173dad;
   border-width: 0px 0px 0px 5px;
@@ -63,7 +72,7 @@ body {
   padding: 10px 15px;
   margin-bottom: 10px;
   background-color: #f9f9f9;
-  width: calc(100% / 2 -20px);
+  width: calc(100% / 2 -10px);
 }
 
 .inputs input {
@@ -74,6 +83,8 @@ body {
 .buttons{
     display: flex;
     align-content: space-between;
+    margin-top: 25px;
+    margin-left: 20px;
 }
 
 .submit {
@@ -100,4 +111,22 @@ body {
     height: 30px;
     border-radius: 5px;
     color: gray;
+}
+
+.inputs a {
+  color: #173DAD;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 45px;
+  margin-bottom: 15px;
+}
+
+.button {
+  background-color: #173DAD;
+  padding: 0px;
+  border: 0;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 15px;
+  margin-top: 15px;
 }

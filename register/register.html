@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="register_style.css" />
+    <link rel="icon" href="../img/LogoFixed.png" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="info">
+        <img src="../img/icon_uconnect.jpg" width="350" class="img_icon" />
+      </div>
+
+      <form class="form">
+        <h2>Registrarse</h2>
+
+        <div class="inputs">
+          <div class="input-box">
+            <p>Primer nombre</p>
+            <input type="text" placeholder="First Name" class="box-2" id="firstName" />
+          </div>
+          <div class="input-box">
+            <p>Segundo nombre</p>
+            <input type="text" placeholder="Second Name" class="box-2" id="secondName"/>
+          </div>
+          <div class="input-box">
+            <p>Primer apellido</p>
+            <input type="text" placeholder="Surname" class="box-2" id="surname"/>
+          </div>
+          <div class="input-box">
+            <p>Segundo apellido</p>
+            <input type="text" placeholder="Second Last Name" class="box-2" id="secondSurname"/>
+          </div>
+          <div class="input-box">
+            <p>Correo electrónico</p>
+            <input type="email" placeholder="Email" class="box-2" id="username"/>
+          </div>
+          <div class="input-box">
+            <p>Contraseña</p>
+            <input type="password" placeholder="Password" class="box-2" id="password"/>
+          </div>
+          <div class="input-box" >
+            <p>Identificador</p>
+            <select class="select" id="idPhone">
+              <option disabled selected>Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <p>Numero De Telefono</p>
+            <input type="text" placeholder="Phone Number" class="box-2" id="phoneNumber"/>
+          </div>
+          <div class="input-box">
+            <p>Tipo ID</p>
+            <select class="select" id="idType">
+              <option disabled selected>Choose...</option>
+              <option>CC</option>
+              <option>TI</option>
+              <option>CE</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <p>Numero de identificacion</p>
+            <input type="text" placeholder="Number ID" class="box-2" id="idNumber"/>
+          </div>
+          <a href="../login/login.html">Ya tengo cuenta!, Iniciar sesión</a>
+            <button id="button" class="button" onclick="register()">Registrarme</button>
+        </div>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
