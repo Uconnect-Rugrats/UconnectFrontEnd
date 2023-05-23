@@ -25,16 +25,13 @@ usuarios.push(usuarioRugrats);
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-
+  let continueValidation = true;
+  
   for (let i = 0; i < usuarios.length; i++) {
-    if (
-      username === usuarios[i].username &&
-      password === usuarios[i].password
-    ) {
+    if (username === usuarios[i].username && password === usuarios[i].password && continueValidation) {
       window.location = "../home/home.html";
-      alert("Bienvenido");
-      return;
+      //alert("Bienvenido");
+      continueValidation = false;
     }
   }
-  alert("no");
 }
