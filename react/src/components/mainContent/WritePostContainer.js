@@ -4,7 +4,7 @@ import Icon from "../../images/icon_uconnect.jpg";
 const WritePostContainer = () => {
   return (
     <div className="write-post-container flex items-start bg-white p-3 rounded-lg">
-      <img src={Icon} className="w-12 h-12 rounded-full mr-2" />
+      <img src={Icon} alt="Icon"className="w-12 h-12 rounded-full mr-2" />
       <div className="flex flex-col w-full">
         <h2 className="text-gray-700 font-medium mb-1">Uconnect</h2>
         <small className="text-gray-500 text-sm">

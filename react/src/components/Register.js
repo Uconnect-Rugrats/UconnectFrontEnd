@@ -13,6 +13,7 @@ const InputsRegister = () => {
       <div className="flex w-full pr-8">
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Primer nombre"}
             label={"Primer Nombre"}
             id={"primerNombre"}
@@ -20,6 +21,7 @@ const InputsRegister = () => {
         </div>
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Segundo nombre"}
             label={"Segundo Nombre"}
             id={"segundoNombre"}
@@ -29,6 +31,7 @@ const InputsRegister = () => {
       <div className="flex w-full pr-8">
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Primer Apellido"}
             label={"Primer Apellido"}
             id={"primerApellido"}
@@ -36,6 +39,7 @@ const InputsRegister = () => {
         </div>
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Segundo Apellido"}
             label={"Segundo Apellido"}
             id={"segundoApellido"}
@@ -45,6 +49,7 @@ const InputsRegister = () => {
       <div className="flex w-full pr-8">
         <div className="w-1/2">
           <Inputs
+            type={"email"}
             placeHolder={"Correo"}
             label={"Correo Electronico"}
             id={"correo"}
@@ -52,6 +57,7 @@ const InputsRegister = () => {
         </div>
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Constraseña"}
             label={"Contraseña"}
             id={"contrasena"}
@@ -74,6 +80,7 @@ const InputsRegister = () => {
         </div>
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Numero de telefono"}
             label={"Numero de telefono"}
             id={"telefono"}
@@ -96,6 +103,7 @@ const InputsRegister = () => {
         </div>
         <div className="w-1/2">
           <Inputs
+            type={"text"}
             placeHolder={"Numero de identificacion"}
             label={"Numero de identificacion"}
             id={"identificacion"}

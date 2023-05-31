@@ -12,17 +12,18 @@ const InputsLogin = () => {
     navigate("/Home");
   };
 
-
   return (
     <>
       <p className="text-2xl font-bold">Iniciar sesión</p>
       <div>
         <Inputs
+          type={"email"}
           placeHolder={"User name"}
           label={"Correo electronico o nombre de usuario"}
           id={"correo"}
         />
         <Inputs
+          type={"password"}
           placeHolder={"Password"}
           label={"Ingresa su contraseña"}
           id={"contrasena"}
