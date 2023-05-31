@@ -9,7 +9,7 @@ const Event = ({
   ...props
 }) => {
   return (
-      <div className="flex items-center mb-4">
+    <div className="flex items-center mb-4">
       <div className="flex  bg-blue-800 bg-opacity-90 relative w-18 h-20 rounded-b-full rounded-t-xl border-2 + border-blue-800 mr-4">
         <div className="bg-white bg-opacity-100 text-black flex items-center justify-center rounded w-18 h-16 rounded-b-xl">
           <div className="text-center">

@@ -4,7 +4,7 @@ import Event from "./Event";
 const RightSidebar = () => {
   return (
     <div className="w-3/4 ">
-      <div className="bg-white flex-col justify-between px-5 pt-2 h-72">
+      <div className="bg-white flex-col justify-between px-5 pt-2 h-80 rounded-lg">
         <h1 className="text-2xl font-bold mb-2">Eventos</h1>
         <Event
           dayEvent="10"
@@ -20,11 +20,11 @@ const RightSidebar = () => {
           groupEvent="Ingeniería de Software G1"
           placeEvent="Edificio M - NES"
         />
-        <a href="/" className="text-blue-800 text-sm">
+        <a href="/Home" className="text-blue-800 text-sm">
           Más Eventos
         </a>
       </div>
-      <div className="bg-white flex-col justify-between px-5 mt-5 pt-2 h-72">
+      <div className="bg-white flex-col justify-between px-5 mt-2 pt-2 h-72 rounded-lg">
         <h1 className="text-2xl font-bold mb-2">Amigos</h1>
 
       </div>

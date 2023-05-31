@@ -10,21 +10,13 @@ import share from "../../images/share.png";
 import likeGray from "../../images/like.png";
 
 const Post = (props) => {
-  const { usuario, imgUsuario, fecha, grupo, contenido } = props;
+  const { user, imgUser, data, group, content, numReactions, numComments } =
+    props;
 
-  const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(120);
+  const [likesCount, setLikesCount] = useState(numReactions);
   const [reactionsVisible, setReactionsVisible] = useState(false);
   const [reactionSelected, setReactionSelected] = useState(null);
-
-  const handleLikeClick = () => {
-    if (liked) {
-      setLikesCount(likesCount - 1);
-    } else {
-      setLikesCount(likesCount + 1);
-    }
-    setLiked(!liked);
-  };
+  const [commentModalOpen, setCommentModalOpen] = useState(false);
 
   const toggleReactions = () => {
     setReactionsVisible(!reactionsVisible);
@@ -43,19 +35,31 @@ const Post = (props) => {
     setReactionsVisible(false);
   };
 
+  const openCommentModal = () => {
+    setCommentModalOpen(true);
+  };
+
+  const closeCommentModal = () => {
+    setCommentModalOpen(false);
+  };
+
   return (
     <div className="bg-white mt-2 p-3 rounded-lg">
       <div>
         <div className="flex items-center">
-          <img src={imgUsuario} alt="imgUser" className="w-8 h-8 rounded-full mr-2" />
+          <img
+            src={imgUser}
+            alt="imgUser"
+            className="w-8 h-8 rounded-full mr-2"
+          />
           <div>
-            <h1>{usuario}</h1>
-            <p className="text-xs text-gray-500">{grupo}</p>
-            <p className="text-xs text-gray-500">{fecha}</p>
+            <h1>{user}</h1>
+            <p className="text-xs text-gray-500">{group}</p>
+            <p className="text-xs text-gray-500">{data}</p>
           </div>
         </div>
       </div>
-      <p className="py-2">{contenido}</p>
+      <p className="py-2">{content}</p>
       <div>
         <div className="activity-icons flex">
           <button className="flex items-center mr-2" onClick={toggleReactions}>
@@ -66,13 +70,18 @@ const Post = (props) => {
                 className="w-4 h-4 mr-1"
               />
             ) : (
-              <img src={likeGray} alt="Reactions" className="w-4 h-4 mr-1" />
+              <img src={likeGray} alt="likeGray" className="w-4 h-4 mr-1" />
             )}
             {likesCount}
           </button>
           <div className="flex items-center mr-2">
-            <img src={comments} alt="Comments" className="w-4 h-4 mr-1" />
-            15
+            <button
+              className="comment-button flex items-center"
+              onClick={openCommentModal}
+            >
+              <img src={comments} alt="Comments" className="w-4 h-4 mr-1" />
+              {numComments}
+            </button>
           </div>
           <div className="flex items-center mr-2">
             <img src={share} alt="Share" className="w-4 h-4 mr-1" />
@@ -83,7 +92,7 @@ const Post = (props) => {
           isOpen={reactionsVisible}
           onRequestClose={() => setReactionsVisible(false)}
           className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-4 z-50"
-          overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+          overlayClassName="fixed inset-0 bg-black bg-opacity-40"
         >
           <div className="reactions-container flex">
             <button
@@ -172,6 +181,23 @@ const Post = (props) => {
               <span className="text-xs">Me entristece</span>
             </button>
           </div>
+        </Modal>
+        <Modal
+          isOpen={commentModalOpen}
+          onRequestClose={closeCommentModal}
+          className="w-[400px] h-[250px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-4 z-50"
+          overlayClassName="fixed inset-0 bg-black bg-opacity-40"
+        >
+          <h1 className="text-lg mb-4">Agregando comentario...</h1>
+          <form>
+            <textarea
+              className="w-full h-28 p-2 border-b border-gray-300 mb-4"
+              placeholder="Cuentanos tu opinión"
+            />
+            <button className="bg-blue-700 hover:bg-blue-700 text-white px-4 py-2 rounded">
+              Publicar comentario
+            </button>
+          </form>
         </Modal>
       </div>
     </div>
