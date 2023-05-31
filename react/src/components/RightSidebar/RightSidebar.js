@@ -3,7 +3,7 @@ import Event from "./Event";
 
 const RightSidebar = () => {
   return (
-    <div className="w-3/4 ">
+    <div className="sticky top-0 w-3/4 ">
       <div className="bg-white flex-col justify-between px-5 pt-2 h-80 rounded-lg">
         <h1 className="text-2xl font-bold mb-2">Eventos</h1>
         <Event

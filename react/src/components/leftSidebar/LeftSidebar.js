@@ -7,14 +7,14 @@ import Message from "./Message";
 
 const LeftSidebar = () => {
   return (
-    <div className=" p-2 flex flex-col justify-between h-full w-2/4 ">
-      <div className>
+    <div className="sticky top-0 p-2 flex flex-col justify-between h-full w-2/4">
+      <div>
         <Square img={LatestNews} text="Ultimas noticias" />
         <Square img={Friends} text="Amigos" />
         <Square img={Group} text="Grupos" />
         <a href="/Home">See More</a>
       </div>
-      <div>
+      <div className="h-full">
         <h1 className="text-2xl font-bold mb-2">Mensajes recientes</h1>
         <Message
           img={Group}

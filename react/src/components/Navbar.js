@@ -3,10 +3,11 @@ import Logo from "../images/Logo nombreWhite.png";
 import Notification from "../images/notification.png";
 import Inbox from "../images/inbox.png";
 import Video from "../images/video.png";
-import UserIcon from "../images/icon_uconnect.jpg";
 import Search from "../images/search.png";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { userIcon } = props;
+
   return (
     <nav className="flex items-center justify-between bg-blue-800 px-5 py-1.5 sticky top-0 z-10">
       <div className="nav-left flex items-center">
@@ -24,7 +25,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="nav-right flex items-center">
-      <div className="search-box bg-slate-100 rounded-full w-96 flex items-center px-4 py-0">
+        <div className="search-box bg-slate-100 rounded-full w-96 flex items-center px-4 py-0">
           <img src={Search} className="w-4" alt="Search" />
           <input
             type="text"
@@ -33,7 +34,7 @@ const Navbar = () => {
           />
         </div>
         <div className="nav-user-icon ml-8 mr-12">
-          <img src={UserIcon} className="w-10 rounded-full" alt="User" />
+          <img src={userIcon} className="w-10 rounded-full" alt="User" />
         </div>
       </div>
     </nav>
