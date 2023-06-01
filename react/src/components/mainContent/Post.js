@@ -1,4 +1,3 @@
-// Post.js
 import React, { useState } from "react";
 import Modal from "react-modal";
 import meEncanta from "../../images/amor.png";
