@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import meEncanta from "../../images/amor.png";
 import como from "../../images/como.png";
@@ -9,17 +9,25 @@ import comments from "../../images/comments.png";
 import share from "../../images/share.png";
 import likeGray from "../../images/like.png";
 import Comment from "./Comment";
-import CommentService from "../../services/CommentService";
 
 const Post = (props) => {
-  const { user, imgUser, data, group, content, numReactions, numComments, commentsList, setCommentsList } =
-    props;
+  const {
+    identificador,
+    user,
+    imgUser,
+    data,
+    group,
+    content,
+    numReactions,
+    numComments,
+  } = props;
 
   const [likesCount, setLikesCount] = useState(numReactions);
   const [reactionsVisible, setReactionsVisible] = useState(false);
   const [reactionSelected, setReactionSelected] = useState(null);
   const [commentModalOpen, setCommentModalOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [commentsList, setCommentsList] = useState([]);
 
   const reactionImages = [
     { name: "Me Encanta", icon: meEncanta },
@@ -58,7 +66,7 @@ const Post = (props) => {
     setComment(event.target.value);
   };
 
-  const handleSubmitComment = async (event) => {
+  const handleSubmitComment = (event) => {
     event.preventDefault();
     const currentDate = new Date();
     const options = {
@@ -68,7 +76,7 @@ const Post = (props) => {
       hour: "numeric",
       minute: "numeric",
     };
-    const formattedDate = currentDate.toLocaleDateString(options);
+    const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
     const newComment = {
       user: user,
@@ -77,15 +85,25 @@ const Post = (props) => {
       content: comment,
     };
 
-    try {
-      await CommentService.createComment(newComment);
-      setCommentsList([...commentsList, newComment]);
-      setComment("");
-      setCommentModalOpen(false);
-    } catch (error) {
-      console.error("Error al crear el comentario:", error);
-    }
+    setCommentsList([...commentsList, newComment]);
+    setComment("");
+    setCommentModalOpen(false);
   };
+
+  useEffect(() => {
+    const fetchPostComments = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/uconnect/api/v1/publicacion/${identificador}/comentario`);
+        const data = await response.json();
+        const comments = data.data || [];
+        setCommentsList(comments);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchPostComments();
+  }, [identificador]);
 
   return (
     <div className="bg-white mt-2 p-3 rounded-lg">
@@ -140,7 +158,8 @@ const Post = (props) => {
               <button
                 key={reactionImage.name}
                 className={`reaction-button flex items-center mx-1 ${
-                  reactionSelected && reactionSelected.name === reactionImage.name
+                  reactionSelected &&
+                  reactionSelected.name === reactionImage.name
                     ? "text-blue-500"
                     : ""
                 }`}
@@ -177,7 +196,13 @@ const Post = (props) => {
         </Modal>
         <div className="bg-slate-50 p-2 mt-4 rounded-lg">
           {commentsList.map((comment, index) => (
-            <Comment key={index} {...comment} />
+            <Comment
+              key={index}
+              user={comment.user}
+              imgUser={comment.imgUser}
+              date={comment.date}
+              content={comment.content}
+            />
           ))}
         </div>
       </div>
