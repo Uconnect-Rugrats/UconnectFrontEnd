@@ -9,9 +9,10 @@ import comments from "../../images/comments.png";
 import share from "../../images/share.png";
 import likeGray from "../../images/like.png";
 import Comment from "./Comment";
+import CommentService from "../../services/CommentService";
 
 const Post = (props) => {
-  const { user, imgUser, data, group, content, numReactions, numComments } =
+  const { user, imgUser, data, group, content, numReactions, numComments, commentsList, setCommentsList } =
     props;
 
   const [likesCount, setLikesCount] = useState(numReactions);
@@ -19,7 +20,6 @@ const Post = (props) => {
   const [reactionSelected, setReactionSelected] = useState(null);
   const [commentModalOpen, setCommentModalOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const [commentsList, setCommentsList] = useState([]);
 
   const reactionImages = [
     { name: "Me Encanta", icon: meEncanta },
@@ -58,7 +58,7 @@ const Post = (props) => {
     setComment(event.target.value);
   };
 
-  const handleSubmitComment = (event) => {
+  const handleSubmitComment = async (event) => {
     event.preventDefault();
     const currentDate = new Date();
     const options = {
@@ -77,11 +77,14 @@ const Post = (props) => {
       content: comment,
     };
 
-    setCommentsList([...commentsList, newComment]);
-    setComment("");
-    setCommentModalOpen(false);
-    //{COMMENT, date.now,}
-    //{"contenido":"sdvjlekcn","publicacion":{"identificador":UUID},"autor":{"identificador":UUID,"primerNombre"}}
+    try {
+      await CommentService.createComment(newComment);
+      setCommentsList([...commentsList, newComment]);
+      setComment("");
+      setCommentModalOpen(false);
+    } catch (error) {
+      console.error("Error al crear el comentario:", error);
+    }
   };
 
   return (
