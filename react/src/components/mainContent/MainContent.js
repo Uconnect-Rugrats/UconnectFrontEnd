@@ -15,7 +15,7 @@ const MainContent = () => {
         data="Mayo 01 2023, 00:00 am"
         content="Inscripciones abiertas semestre 2-2023! Te invitamos a hacer la inscripción a través de nuestra página web #Uco/ServiciosEnLinea"
         numReactions={10}
-        numComents="10"
+        numComents={10}
       />
       <Post
         user="Wider Farid Sanchez Garzon"
@@ -24,7 +24,7 @@ const MainContent = () => {
         data="Mayo 30 2023, 9:40 pm"
         content="Lo siento muchachos, solo el equipo llamado 'Rugrats' cumplió con el objetivo propuesto para la materia, gracias al esfuerzo puesto por parte del estudiante Edy Alexander Quintero, los otros nos vemos para las habilitaciones dentro de 8 días"
         numReactions={4}
-        numComents="8"
+        numComents={8}
       />
     </div>
   );

@@ -68,10 +68,11 @@ const Post = (props) => {
       hour: "numeric",
       minute: "numeric",
     };
-    const formattedDate = currentDate.toLocaleDateString("en-US", options);
+    const formattedDate = currentDate.toLocaleDateString(options);
 
     const newComment = {
-      user: { name: "Uconnect", img: imgUser },
+      user: user,
+      imgUser: imgUser,
       date: formattedDate,
       content: comment,
     };
@@ -79,6 +80,8 @@ const Post = (props) => {
     setCommentsList([...commentsList, newComment]);
     setComment("");
     setCommentModalOpen(false);
+    //{COMMENT, date.now,}
+    //{"contenido":"sdvjlekcn","publicacion":{"identificador":UUID},"autor":{"identificador":UUID,"primerNombre"}}
   };
 
   return (

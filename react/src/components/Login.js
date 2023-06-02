@@ -36,7 +36,7 @@ const InputsLogin = () => {
         Crear una cuenta
       </button>
       <button
-        className="flex justify-center py-2 text-white bg-blue-800 w-72 rounded-3xl text-xl"
+        className="flex justify-center py-2 text-white bg-blue-800 w-60 rounded-3xl text-xl"
         onClick={handleLogin}
       >
         Ingresar
