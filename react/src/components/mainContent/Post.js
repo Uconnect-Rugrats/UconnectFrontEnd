@@ -91,22 +91,36 @@ const Post = (props) => {
     setCommentModalOpen(false);
   };
 
-  useEffect(() => {
-    const fetchPostComments = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/uconnect/api/v1/publicacion/${identificador}/comentario`
-        );
-        const data = await response.json();
-        const comments = data.data || [];
-        setCommentsList(comments);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
+  const [commentList, setCommentList] = useState([]);
 
-    fetchPostComments();
-  }, [identificador]);
+  useEffect(() => {
+    const comentario = {
+      publicacion: { identificador: "0c37e848-532b-4bee-97fc-161b8a495deb" },
+    };
+  
+    const queryString = Object.keys(comentario)
+      .map(
+        (key) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(comentario[key])}`
+      )
+      .join("&");
+  
+    const fetchComentario = () => {
+      fetch(`http://localhost:8080/uconnect/api/v1/comentario?${queryString}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const comentarios = data.data || [];
+          setCommentList(comentarios);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    };
+  
+    fetchComentario();
+  }, []);
+  
 
   return (
     <div className="bg-white mt-2 p-3 rounded-lg">
@@ -197,7 +211,22 @@ const Post = (props) => {
             </button>
           </form>
         </Modal>
+
         <div className="bg-slate-50 p-2 mt-4 rounded-lg">
+          {commentList.map((comment) => (
+            <Comment
+              key={comment.identificador}
+              identificador={comment.identificador}
+              user={
+                comment.autor.participante.persona.primerNombre +
+                " " +
+                comment.autor.participante.persona.primerApellido
+              }
+              imgUser={imgUser}
+              date={comment.fechaPublicacion}
+              content={comment.contenido}
+            />
+          ))}
           {commentsList.map((comment, index) => (
             <Comment
               key={index}
