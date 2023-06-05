@@ -20,13 +20,32 @@ const MainContent = () => {
           console.log(err.message);
         });
     };
-
     fetchPublicacion();
   }, []);
 
   return (
     <div className="px-6 w-full">
       <WritePostContainer />
+
+      {postList.map((post) => (
+        <Post
+          key={post.identificador}
+          identificador={post.identificador}
+          user={
+            post.autor.participante.persona.primerNombre +
+            " " +
+            post.autor.participante.persona.primerApellido
+          }
+          imgUser={userLogo}
+          date={post.fechaPublicacion}
+          group={post.autor.grupo.nombre}
+          content={post.contenido}
+          numReactions={5}
+          numComments={10}
+          commentsList={[]}
+          setCommentsList={() => {}}
+        />
+      ))}
       <Post
         user="Universidad Catolica de Oriente"
         imgUser={ucoLogo}
@@ -35,32 +54,6 @@ const MainContent = () => {
         content="Inscripciones abiertas semestre 2-2023! Te invitamos a hacer la inscripción a través de nuestra página web #Uco/ServiciosEnLinea"
         numReactions={10}
         numComents={10}
-      />
-
-      {postList.map((post) => (
-        <Post
-          key={post.identificador}
-          identificador={post.identificador}
-          user={post.autor.participante.persona.primerNombre + " " + post.autor.participante.persona.primerApellido}
-          imgUser={userLogo}
-          date={post.fechaPublicacion}
-          group={post.autor.grupo.nombre}
-          content={post.contenido}
-          numReactions={5}
-          numComments={10}
-          commentsList={[]} // Agrega la lista de comentarios vacía
-          setCommentsList={() => {}} // Agrega la función setCommentsList
-        />
-      ))}
-
-      <Post
-        user="Wider Farid Sanchez Garzon"
-        imgUser={userLogo}
-        group="Diseño Orientado A Objetos G1"
-        date="Mayo 30 2023, 9:40 pm"
-        content="Lo siento muchachos, solo el equipo llamado 'Rugrats' cumplió con el objetivo propuesto para la materia, gracias al esfuerzo puesto por parte del estudiante Edy Alexander Quintero, los otros nos vemos para las habilitaciones dentro de 8 días"
-        numReactions={4}
-        numComents={8}
       />
     </div>
   );

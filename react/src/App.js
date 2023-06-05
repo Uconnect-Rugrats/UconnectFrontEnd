@@ -16,7 +16,6 @@ const App = () => {
             </FormLoginRegister>
           }
         />
-
         <Route
           path="/register"
           element={

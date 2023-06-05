@@ -8,6 +8,7 @@ import triste from "../../images/triste.png";
 import comments from "../../images/comments.png";
 import share from "../../images/share.png";
 import likeGray from "../../images/like.png";
+import userUconnect from "../../images/icon_uconnect.jpg";
 import Comment from "./Comment";
 
 const Post = (props) => {
@@ -15,7 +16,7 @@ const Post = (props) => {
     identificador,
     user,
     imgUser,
-    data,
+    date,
     group,
     content,
     numReactions,
@@ -79,8 +80,8 @@ const Post = (props) => {
     const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
     const newComment = {
-      user: user,
-      imgUser: imgUser,
+      user: "Uconnect",
+      imgUser: userUconnect,
       date: formattedDate,
       content: comment,
     };
@@ -93,7 +94,9 @@ const Post = (props) => {
   useEffect(() => {
     const fetchPostComments = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/uconnect/api/v1/publicacion/${identificador}/comentario`);
+        const response = await fetch(
+          `http://localhost:8080/uconnect/api/v1/publicacion/${identificador}/comentario`
+        );
         const data = await response.json();
         const comments = data.data || [];
         setCommentsList(comments);
@@ -117,7 +120,7 @@ const Post = (props) => {
           <div>
             <h1>{user}</h1>
             <p className="text-xs text-gray-500">{group}</p>
-            <p className="text-xs text-gray-500">{data}</p>
+            <p className="text-xs text-gray-500">{date}</p>
           </div>
         </div>
       </div>
@@ -139,7 +142,7 @@ const Post = (props) => {
           <div className="flex items-center mr-2">
             <button className="flex items-center" onClick={openCommentModal}>
               <img src={comments} alt="Comments" className="w-4 h-4 mr-1" />
-              {numComments}
+              {numComments}Comentar
             </button>
           </div>
           <div className="flex items-center mr-2">
