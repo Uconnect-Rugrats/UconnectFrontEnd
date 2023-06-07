@@ -28,7 +28,7 @@ const Post = (props) => {
   const [reactionSelected, setReactionSelected] = useState(null);
   const [commentModalOpen, setCommentModalOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const [commentsList, setCommentsList] = useState([]);
+  const [commentList, setCommentList] = useState([]);
 
   const reactionImages = [
     { name: "Me Encanta", icon: meEncanta },
@@ -79,48 +79,48 @@ const Post = (props) => {
     };
     const formattedDate = currentDate.toLocaleDateString("en-US", options);
 
-    const newComment = {
-      user: "Uconnect",
-      imgUser: userUconnect,
-      date: formattedDate,
-      content: comment,
-    };
+    // const newComment = {
+    //   user: "Uconnect",
+    //   imgUser: userUconnect,
+    //   date: formattedDate,
+    //   content: comment,
+    // };
 
-    setCommentsList([...commentsList, newComment]);
-    setComment("");
+    const newComment = {
+      autor:{identificador:"83286a83-53cf-4636-b2ee-b3405c0acd04"},
+      publicacion:{identificador:identificador},
+      contenido: comment,
+      fechaPublicacion: formattedDate,
+      estado:{identificador:"ffce038d-9dd2-4820-8b48-5fc591c7a146"}
+   }
+
+
+
     setCommentModalOpen(false);
   };
 
-  const [commentList, setCommentList] = useState([]);
-
   useEffect(() => {
     const comentario = {
-      publicacion: { identificador: "0c37e848-532b-4bee-97fc-161b8a495deb" },
+      publicacion: { identificador: identificador },
     };
-  
-    const queryString = Object.keys(comentario)
-      .map(
-        (key) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(comentario[key])}`
-      )
-      .join("&");
-  
-    const fetchComentario = () => {
-      fetch(`http://localhost:8080/uconnect/api/v1/comentario?${queryString}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          const comentarios = data.data || [];
-          setCommentList(comentarios);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    };
-  
-    fetchComentario();
+
+    const dtoJson = JSON.stringify(comentario);
+
+    fetch(
+      `http://localhost:8080/uconnect/api/v1/comentario?dtoJson=${encodeURIComponent(
+        dtoJson
+      )}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const comentario = data.data || [];
+        setCommentList(comentario);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, []);
-  
 
   return (
     <div className="bg-white mt-2 p-3 rounded-lg">
@@ -156,7 +156,7 @@ const Post = (props) => {
           <div className="flex items-center mr-2">
             <button className="flex items-center" onClick={openCommentModal}>
               <img src={comments} alt="Comments" className="w-4 h-4 mr-1" />
-              {numComments}Comentar
+              {numComments} Comentar
             </button>
           </div>
           <div className="flex items-center mr-2">
@@ -218,22 +218,13 @@ const Post = (props) => {
               key={comment.identificador}
               identificador={comment.identificador}
               user={
-                comment.autor.participante.persona.primerNombre +
+                comment.autor?.participante?.persona?.primerNombre +
                 " " +
-                comment.autor.participante.persona.primerApellido
+                comment.autor?.participante?.persona?.primerApellido
               }
               imgUser={imgUser}
               date={comment.fechaPublicacion}
               content={comment.contenido}
-            />
-          ))}
-          {commentsList.map((comment, index) => (
-            <Comment
-              key={index}
-              user={comment.user}
-              imgUser={comment.imgUser}
-              date={comment.date}
-              content={comment.content}
             />
           ))}
         </div>

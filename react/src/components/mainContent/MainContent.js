@@ -41,7 +41,7 @@ const MainContent = () => {
           group={post.autor.grupo.nombre}
           content={post.contenido}
           numReactions={5}
-          numComments={10}
+          numComments={10 }
           commentsList={[]}
           setCommentsList={() => {}}
         />

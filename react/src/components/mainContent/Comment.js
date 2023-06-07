@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 
 const Comment = (props) => {
-  const { user, imgUser, date, content } = props;
+  const { identificador, user, imgUser, date, content } = props;
   const [replyModalOpen, setReplyModalOpen] = useState(false);
   const [reply, setReply] = useState("");
 
