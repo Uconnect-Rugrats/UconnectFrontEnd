@@ -8,7 +8,6 @@ import triste from "../../images/triste.png";
 import comments from "../../images/comments.png";
 import share from "../../images/share.png";
 import likeGray from "../../images/like.png";
-import userUconnect from "../../images/icon_uconnect.jpg";
 import Comment from "./Comment";
 Modal.setAppElement("#root");
 
@@ -69,35 +68,35 @@ const Post = (props) => {
     setComment(event.target.value);
   };
 
-  const addComment = async () => {
-    const requestBody = {
+  const postData = async () => {
+    const url = 'http://localhost:8080/uconnect/api/v1/comentario';
+  
+    const data = {
       autor:{identificador:"83286a83-53cf-4636-b2ee-b3405c0acd04"},
       comentarioPadre:{identificador:"24cb84be-fdd8-4fe2-811a-b1d97c59f731"},
       publicacion:{identificador:identificador},
       contenido:comment,
-      estado:{identificador:"ffce038d-9dd2-4820-8b48-5fc591c7a146"}
-   };
-
-    fetch("http://localhost:8080/uconnect/api/v1/comentario", {
-      method: "POST",
-      body: JSON.stringify(requestBody),
+      estado:{identificador:"ffce038d-9dd2-4820-8b48-5fc591c7a146"}    };
+  
+    const requestOptions = {
+      method: 'POST',
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-Type': 'application/json'
       },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCommentList((prevCommentList) => [data, ...prevCommentList]);
-        console.log(requestBody)
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      body: JSON.stringify(data)
+    };
+    try {
+      const response = await fetch(url, requestOptions);
+      const jsonData = await response.json();
+      console.log(jsonData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSubmitComment = (e) => {
     e.preventDefault();
-    addComment();
+    postData();
     setCommentModalOpen(false);
   };
 
@@ -122,7 +121,7 @@ const Post = (props) => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [identificador]);
 
   return (
     <div className="bg-white mt-2 p-3 rounded-lg">

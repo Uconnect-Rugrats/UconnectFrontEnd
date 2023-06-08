@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WritePostContainer from "./WritePostContainer";
 import Post from "./Post";
-import ucoLogo from "../../images/uco_logo.png";
 import userLogo from "../../images/user-uconnect.webp";
 
 const MainContent = () => {
@@ -43,18 +42,8 @@ const MainContent = () => {
           numReactions={5}
           numComments={10 }
           commentsList={[]}
-          setCommentsList={() => {}}
         />
       ))}
-      <Post
-        user="Universidad Catolica de Oriente"
-        imgUser={ucoLogo}
-        group="Universidad Catolica de Oriente"
-        date="Mayo 01 2023, 00:00 am"
-        content="Inscripciones abiertas semestre 2-2023! Te invitamos a hacer la inscripción a través de nuestra página web #Uco/ServiciosEnLinea"
-        numReactions={10}
-        numComents={10}
-      />
     </div>
   );
 };
